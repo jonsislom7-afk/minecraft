@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Real World Map Importer - Google Maps bilan Real Joylar</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🗺️</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🗺️ Minecraft Map Importer</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Bosh sahifa</a></li>
+                <li><a href="#features">Xususiyatlari</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#docs">Dokumentasiya</a></li>
+                <li><a href="https://github.com/jonsislom7-afk/minecraft" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>🌍 Real Dunyo → Minecraft</h1>
+            <p>Google Maps orqali real joylarni Minecraft dunyosiga o'zgartiring!</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollTo('demo')">Boshlang</button>
+                <button class="btn btn-secondary" onclick="window.open('https://github.com/jonsislom7-afk/minecraft')">GitHub</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-graphic">🎮🗺️📍</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>✨ Xususiyatlari</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Google Maps</h3>
+                    <p>Real joylarni xaritadan tanlang va import qiling</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☕</div>
+                    <h3>Java Edition</h3>
+                    <p>Minecraft Java Edition uchun to'liq qo'llab-quvvatlash</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Bedrock Edition</h3>
+                    <p>Mobile va konsol versiyalari uchun qo'llab-quvvatlash</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Koordinat Konversiya</h3>
+                    <p>Real koordinatalarni Minecraft formatiga avtomatik o'zgartiring</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏔️</div>
+                    <h3>Terrain Data</h3>
+                    <p>Balandlik ma'lumotlarini Minecraft qatlamlari sifatida yarating</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Oson Sozlash</h3>
+                    <p>Og'ir texnik bilim siz ham o'rnatib ishlatishingiz mumkin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2>🎯 Demo - Koordinatlarni Konvertasiya Qiling</h2>
+            <div class="demo-grid">
+                <div class="demo-box">
+                    <h3>Real Dunyo Koordinatalari</h3>
+                    <div class="input-group">
+                        <label>Kenglik (Latitude):</label>
+                        <input type="number" id="latitude" placeholder="41.3175" min="-90" max="90" step="0.0001">
+                    </div>
+                    <div class="input-group">
+                        <label>Uzunlik (Longitude):</label>
+                        <input type="number" id="longitude" placeholder="69.2401" min="-180" max="180" step="0.0001">
+                    </div>
+                    <div class="input-group">
+                        <label>Balandlik (Elevation) - m:</label>
+                        <input type="number" id="elevation" placeholder="455" min="0" step="1" value="455">
+                    </div>
+                    <button class="btn btn-primary" onclick="convertCoordinates()">Konvertasiya Qil</button>
+                </div>
+
+                <div class="demo-box">
+                    <h3>Minecraft Koordinatalari</h3>
+                    <div class="result-group">
+                        <label>X koordinatasi:</label>
+                        <div class="result" id="result-x">-</div>
+                    </div>
+                    <div class="result-group">
+                        <label>Z koordinatasi:</label>
+                        <div class="result" id="result-z">-</div>
+                    </div>
+                    <div class="result-group">
+                        <label>Y koordinatasi (Balandlik):</label>
+                        <div class="result" id="result-y">-</div>
+                    </div>
+                    <div class="result-info">
+                        <p id="location-name">📍 Joylashuvni kiriting</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Locations -->
+            <div class="popular-locations">
+                <h3>🏙️ Mashhur Joylar</h3>
+                <div class="locations-grid">
+                    <button class="location-btn" onclick="setLocation(41.3175, 69.2401, 455)">
+                        Tashkent<br><small>Uzbekistan</small>
+                    </button>
+                    <button class="location-btn" onclick="setLocation(40.7128, -74.0060, 10)">
+                        New York<br><small>USA</small>
+                    </button>
+                    <button class="location-btn" onclick="setLocation(51.5074, -0.1278, 15)">
+                        London<br><small>UK</small>
+                    </button>
+                    <button class="location-btn" onclick="setLocation(48.8566, 2.3522, 35)">
+                        Paris<br><small>France</small>
+                    </button>
+                    <button class="location-btn" onclick="setLocation(35.6762, 139.6503, 40)">
+                        Tokyo<br><small>Japan</small>
+                    </button>
+                    <button class="location-btn" onclick="setLocation(-33.8688, 151.2093, 10)">
+                        Sydney<br><small>Australia</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs" class="docs">
+        <div class="container">
+            <h2>📚 Dokumentasiya</h2>
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <h3>☕ Java Edition</h3>
+                    <p>Minecraft Java Edition uchun ilova</p>
+                    <pre><code>MapImporter importer = new MapImporter("API_KEY");
+int[] coords = importer.getMinecraftCoordinates(41.3175, 69.2401);
+System.out.println("X: " + coords[0] + ", Z: " + coords[1]);</code></pre>
+                </div>
+                <div class="doc-card">
+                    <h3>🎮 Bedrock Edition</h3>
+                    <p>Minecraft Bedrock Edition uchun ilova</p>
+                    <pre><code>const importer = new MapImporter('API_KEY');
+const result = await importer.fetchLocationData(41.3175, 69.2401);
+console.log(`X: ${result.minecraftX}, Z: ${result.minecraftZ}`);</code></pre>
+                </div>
+                <div class="doc-card">
+                    <h3>📍 Koordinat Sistemi</h3>
+                    <p>Koordinatlarni tushunish</p>
+                    <pre><code>Real: Latitude [-90, 90], Longitude [-180, 180]
+Minecraft: X, Z, Y (Height)
+
+Masshtab: 1 block = 100m
+Balandlik: 10m = 1 block</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section class="installation">
+        <div class="container">
+            <h2>🚀 O'rnatish</h2>
+            <div class="install-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Repository klonlash</h3>
+                        <pre><code>git clone https://github.com/jonsislom7-afk/minecraft.git
+cd minecraft</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Google Maps API Kaliti</h3>
+                        <p>Google Cloud Console-dan API key yarating</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Java Edition o'rnatishi</h3>
+                        <pre><code>cd java-edition && mvn install</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Bedrock Edition o'rnatishi</h3>
+                        <pre><code>cd bedrock-edition && npm install</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>❓ Savol-Javob</h2>
+            <div class="faq-items">
+                <div class="faq-item">
+                    <div class="faq-question">Google Maps API kaliti qanday oladim?</div>
+                    <div class="faq-answer">
+                        <a href="https://console.cloud.google.com" target="_blank">Google Cloud Console</a> ga o'tin, yangi loyiha yarating, Maps API-ni yoqing va API key yarating.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Qaysi Minecraft versiyasi qo'llab-quviladi?</div>
+                    <div class="faq-answer">
+                        Java Edition 1.18+ va Bedrock Edition (barcha platformalar) qo'llab-quvvallashtiriladi.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Koordinat konversiyasi qanchasi aniq?</div>
+                    <div class="faq-answer">
+                        Konversiya 0.1 km (100 meter) aniqlikdagi Minecraft blocklari sifatida amalga oshiriladi.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Offline ishlatishim mumkinmi?</div>
+                    <div class="faq-answer">
+                        Koordinat konversiyasi offline ishlatilishi mumkin, lekin Google Maps ma'lumotlarini olish uchun internet kerak.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Loyihasi</h4>
+                    <p>Minecraft Real World Map Importer</p>
+                    <p>Real joylarni Minecraft dunyosiga o'zgartiring!</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Havolalar</h4>
+                    <ul>
+                        <li><a href="https://github.com/jonsislom7-afk/minecraft" target="_blank">GitHub Repository</a></li>
+                        <li><a href="#docs">Dokumentasiya</a></li>
+                        <li><a href="#installation">O'rnatish</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Texnologiyalar</h4>
+                    <ul>
+                        <li>Java 11+</li>
+                        <li>Node.js 14+</li>
+                        <li>Google Maps API</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 jonsislom7-afk. Barcha huquqlari saqlangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
