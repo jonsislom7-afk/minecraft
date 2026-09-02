@@ -1,0 +1,29 @@
+{
+  "name": "minecraft-bedrock-map-importer",
+  "version": "1.0.0",
+  "description": "Google Maps orqali real joylarni Minecraft Bedrock Edition-ga import qilish",
+  "main": "src/MapImporterBedrock.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "minecraft",
+    "bedrock",
+    "google-maps",
+    "coordinates",
+    "importer"
+  ],
+  "author": "jonsislom7-afk",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "nodemon": "^3.0.1"
+  }
+}
